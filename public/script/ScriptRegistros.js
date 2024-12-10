@@ -1,3 +1,7 @@
+function Atras(){
+    window.location.href = 'index.html';
+}
+
 document.getElementById('Registros').addEventListener('click',async()=>{
     try{
         const response = await fetch('/RegistroHistorico');
@@ -41,6 +45,6 @@ document.getElementById('Registros').addEventListener('click',async()=>{
             document.getElementById('BodyRegistro').appendChild(EtiquetaBody);
         });
     }catch(err){
-
+        console.log('Se produjo un error al manejar los datos',err)
     }
 })

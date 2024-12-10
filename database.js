@@ -18,7 +18,7 @@ const MostrarHumedadTemp = async()=>{
 
     }catch(err){
         console.log('No se pudo conectar a la Base de Datos',err); 
-        return null; 
+        return false; 
     }finally{
         if(conexion){
             await conexion.end();
@@ -47,7 +47,7 @@ const AgregarDIA = async (Datos)=>{
         return true;
     }catch(err){
         console.log('No se pudo conectar a la Base de Datos',err); 
-        return null;
+        return false;
     }finally{
         if(conexion){
             await conexion.end();
@@ -73,7 +73,30 @@ const AgregarHistorial = async(Datos)=>{
 
     }catch(err){
         console.log('No se pudo conectar a la Base de Datos',err); 
-        return null;
+        return false;
+    }finally{
+        if(conexion){
+            await conexion.end();
+            console.log('Conexion cerrada');
+        }
+    }
+}
+
+const MostrarAgenda = async ()=>{
+    try{
+        conexion = await mysql.createConnection({
+            host: 'localhost',
+            user: 'root',
+            password: '',
+            database: 'riego2.0'
+        });
+        console.log('conexion exitosa a la Base de Datos')
+
+        const [Registros] = await conexion.execute(`select horasderiego.hora, horasderiego.duracion, calendarioderiego.fecha from horasderiego INNER JOIN calendarioderiego on horasderiego.id = calendarioderiego.id;`)
+        return Registros;
+    }catch(err){
+        console.log('No se pudo conectar a la Base de Datos',err); 
+        return false;
     }finally{
         if(conexion){
             await conexion.end();
@@ -85,5 +108,6 @@ const AgregarHistorial = async(Datos)=>{
 module.exports = {
     MostrarHumedadTemp,
     AgregarDIA,
-    AgregarHistorial
+    AgregarHistorial,
+    MostrarAgenda
 }

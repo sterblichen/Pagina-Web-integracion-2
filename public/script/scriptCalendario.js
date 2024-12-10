@@ -1,4 +1,14 @@
+function Atras(){
+    window.location.href = 'index.html';
+}
+
+
 const Agenda = document.getElementById('FormularioRiego');
+
+function limpiarFormulario(){
+    Agenda.reset();
+}
+
 document.getElementById('Agendar').addEventListener('click',async ()=>{
     const Riego = new FormData(Agenda);
     const ValorRiego = {};
@@ -20,4 +30,5 @@ document.getElementById('Agendar').addEventListener('click',async ()=>{
     }catch(err){
         console.error('Error al enviar los datos', err)
     }
+    limpiarFormulario();
 });

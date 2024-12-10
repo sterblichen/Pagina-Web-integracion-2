@@ -7,3 +7,6 @@ function AbrirTemperatura(){
 function AbrirCalendario(){
     window.location.href = 'EstablecerRiego.html'
 }
+function AbrirRegistroAgenda(){
+    window.location.href = 'MostrarAgenda.html';
+}
