@@ -10,3 +10,6 @@ function AbrirCalendario(){
 function AbrirRegistroAgenda(){
     window.location.href = 'MostrarAgenda.html';
 }
+function AbrirConectar(){
+    window.location.href = 'ConectarDisp.html';
+}
